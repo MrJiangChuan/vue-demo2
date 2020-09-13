@@ -22,7 +22,7 @@
 
 <script>
 
-
+git remote add jc git@github.com:MrJiangChuan/vue-demo2.git
 export default {
   name: 'App',
   data(){
