@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!--常用表单双向数据绑定-->
+    <h3>1、常用表单双向数据绑定</h3>
     <form action="https://www.baidu.com">
       姓名：<input type="text" v-model="name" /><br>
       性别：<input type="radio" value="0" v-model="gender" />男
@@ -19,7 +19,7 @@
       <input type="submit" value="提交" v-on:click.prevent="submit"/>
     </form>
     <hr/>
-    <!--表单域修饰符-->
+    <h3>2、表单域修饰符</h3>
     <input type="number" v-model.number="num1" />
     <input type="number" v-model.number="num2" /><br>
     <input type="number" v-model.number="result" /><br>
@@ -29,14 +29,18 @@
     <input type="text" v-model.lazy="msg" /><br>
     <h3>{{msg}}</h3>
     <hr/>
-    <!--自定义指令-->
+    <h3>3、自定义指令</h3>
     <input type="text" v-focus v-bgcolor="bgcolor" />
     <hr/>
-    <!--计算属性[与方法区别在于是否具有缓存]-->
-   <h3>{{computeFun1}}</h3>
-    <h3>{{computeFun1}}</h3>
+    <h3>4、计算属性[与方法区别在于是否具有缓存]</h3>
+    <h4>{{computeFun1}}</h4>
+    <h4>{{computeFun1}}</h4>
 <!--    <h3>{{methodFun1()}}</h3>
     <h3>{{methodFun1()}}</h3> -->
+    <hr/>
+    <h3>5、侦听器</h3>
+    <input type="text" v-model="wahch1" /><br>
+    <input type="text" v-model.trim.lazy="infoCheck" /><span>{{tip}}</span>
   </div>
 </template>
 
@@ -57,7 +61,10 @@ export default {
         text: '',
         msg: '',
         bgcolor: {color: 'red'},
-        msg1: 'ABCDEFG'
+        msg1: 'ABCDEFG',
+        wahch1: 'abcd',
+        infoCheck: '',
+        tip: ''
     }
   },
   methods: {
@@ -80,6 +87,7 @@ export default {
       return sum
     }
   },
+  //计算属性
   computed: {
     computeFun1: function() {
       // return this.msg1.split('').reverse().join('')
@@ -90,6 +98,30 @@ export default {
       return sum
     }
 
+  },
+  //侦听器
+  watch: {
+    wahch1: function(val) {
+      console.log(val)
+    },
+    infoCheck: function(val) {
+      this.tip = '正在查询...'
+      // var that = this
+      // setTimeout(function() {
+      //   if(val=='admin'){
+      //     that.tip = '用户名已存在，请更换一个'
+      //   }else{
+      //     that.tip = '注册成功'
+      //   }
+      // },2000)
+      setTimeout(()=>{
+          if(val=='admin'){
+            this.tip = '用户名已存在，请更换一个'
+          }else{
+            this.tip = '注册成功'
+          }
+      },2000)
+    }
   },
   //局部指令
   directives: {
