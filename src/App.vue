@@ -41,6 +41,13 @@
     <h3>5、侦听器</h3>
     <input type="text" v-model="wahch1" /><br>
     <input type="text" v-model.trim.lazy="infoCheck" /><span>{{tip}}</span>
+    <hr/>
+    <h3>6、过滤器</h3>
+    <input type="text" v-model="msg2" />
+    <h4>{{msg2 | upper}}</h4>
+    <h4>{{msg2 | lower}}</h4>
+    <h4>{{msg2 | upper | lower}}</h4>
+    <h4>{{msg2 | format('good')}}</h4>
   </div>
 </template>
 
@@ -64,7 +71,8 @@ export default {
         msg1: 'ABCDEFG',
         wahch1: 'abcd',
         infoCheck: '',
-        tip: ''
+        tip: '',
+        msg2: ''
     }
   },
   methods: {
@@ -134,6 +142,18 @@ export default {
       bind: function(el, binding) {
         el.style.backgroundColor = binding.value.color
       }
+    }
+  },
+  //局部过滤器
+  filters: {
+    upper: function(val) {
+      return val.charAt(0).toUpperCase() + val.slice(1)
+    },
+    lower: function(val) {
+      return val.charAt(0).toLowerCase() + val.slice(1)
+    },
+    format: function(val, args) {
+      return val+"--"+args
     }
   }
 }

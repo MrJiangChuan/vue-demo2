@@ -13,6 +13,13 @@ Vue.config.productionTip = false
 //     el.style.backgroundColor = binding.value.color
 //   }
 // })
+// <!--全局过滤器-->
+// Vue.filter('upper', function(val) {
+//   return val.charAt(0).toUpperCase() + val.slice(1)
+// })
+// Vue.filter('lower', function(val) {
+//   return val.charAt(0).toLowerCase() + val.slice(1)
+// })
 new Vue({
   render: h => h(App)
 }).$mount('#app')
