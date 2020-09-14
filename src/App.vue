@@ -48,6 +48,9 @@
     <h4>{{msg2 | lower}}</h4>
     <h4>{{msg2 | upper | lower}}</h4>
     <h4>{{msg2 | format('good')}}</h4>
+    <hr/>
+    <h3>7、生命周期</h3>
+    <input type="button" value="销毁vue实例" @click="$destroy()" />
   </div>
 </template>
 
@@ -155,7 +158,33 @@ export default {
     format: function(val, args) {
       return val+"--"+args
     }
+  },
+  //8个生命周期相关钩子
+  beforeCreate: () => {
+    console.log('beforeCreate')
+  },
+  created: () => {
+    console.log('created')
+  },
+  beforeMount: () => {
+    console.log('beforeMount')
+  },
+  mounted: () => {
+    console.log('mounted')
+  },
+  beforeUpdate: () => {
+    console.log('beforeUpdate')
+  },
+  updated: () => {
+    console.log('updated')
+  },
+  beforeDestroy: () => {
+    console.log('beforeDestroy')
+  },
+  destroyed: () => {
+    console.log('destroyed')
   }
+
 }
 </script>
 
