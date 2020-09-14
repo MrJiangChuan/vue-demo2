@@ -28,6 +28,9 @@
     <input type="button" value="字符个数" @click="count" /><br>
     <input type="text" v-model.lazy="msg" /><br>
     <h3>{{msg}}</h3>
+    <hr/>
+    <!--自定义指令-->
+    <input type="text" v-focus v-bgcolor="bgcolor" />
   </div>
 </template>
 
@@ -46,7 +49,8 @@ export default {
         num2: 0,
         result: 0,
         text: '',
-        msg: ''
+        msg: '',
+        bgcolor: {color: 'red'}
     }
   },
   methods: {
@@ -63,6 +67,19 @@ export default {
   },
   computed: {
 
+  },
+  //局部指令
+  directives: {
+    focus: {
+      inserted: function(el) {
+        el.focus()
+      }
+    },
+    bgcolor: {
+      bind: function(el, binding) {
+        el.style.backgroundColor = binding.value.color
+      }
+    }
   }
 }
 </script>
