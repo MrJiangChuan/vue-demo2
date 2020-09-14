@@ -31,6 +31,12 @@
     <hr/>
     <!--自定义指令-->
     <input type="text" v-focus v-bgcolor="bgcolor" />
+    <hr/>
+    <!--计算属性[与方法区别在于是否具有缓存]-->
+   <h3>{{computeFun1}}</h3>
+    <h3>{{computeFun1}}</h3>
+<!--    <h3>{{methodFun1()}}</h3>
+    <h3>{{methodFun1()}}</h3> -->
   </div>
 </template>
 
@@ -50,7 +56,8 @@ export default {
         result: 0,
         text: '',
         msg: '',
-        bgcolor: {color: 'red'}
+        bgcolor: {color: 'red'},
+        msg1: 'ABCDEFG'
     }
   },
   methods: {
@@ -63,9 +70,25 @@ export default {
     },
     count() {
       console.log(this.text.length)
+    },
+    methodFun1: function() {
+      // return this.msg1.split('').reverse().join('')
+      let sum=0
+      for(let i=0;i<1000000000;i++){
+        sum += i
+      }
+      return sum
     }
   },
   computed: {
+    computeFun1: function() {
+      // return this.msg1.split('').reverse().join('')
+      let sum=0
+      for(let i=0;i<1000000000;i++){
+        sum += i
+      }
+      return sum
+    }
 
   },
   //局部指令
